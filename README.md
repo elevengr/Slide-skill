@@ -78,4 +78,4 @@ Ela também segue uma lista de "tells de IA" a evitar, como cards idênticos com
 
 ## Licença
 
-Apache 2.0
+Apache-2.0
