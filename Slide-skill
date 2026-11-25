@@ -1,0 +1,213 @@
+name	slides-html
+description	Cria uma apresentação em formato de slides em um único arquivo .html, usando apenas HTML, CSS e JavaScript puro, sobre qualquer tema (trabalho escolar ou acadêmico, pitch, aula, relatório, palestra, projeto pessoal ou profissional). Parte de um PDF, documento, texto colado ou apenas de um tema descrito pelo usuário. Use sempre que o usuário pedir slides, apresentação, seminário, deck ou "página em formato de slide", mesmo que ele não diga "HTML". Antes de gerar, pergunta o tamanho (quantidade de slides e proporção). O visual deve ser autoral e específico do tema, com animações intencionais, nunca com aparência genérica de template ou de IA.
+Slides em HTML para qualquer tema
+Objetivo
+
+Transformar um conteúdo (PDF, documento, texto ou ideia) em slides que apoiem a fala de quem apresenta, com um visual bonito, autoral e coerente com o tema e o público. O resultado não pode parecer gerado por IA.
+
+Restrições obrigatórias
+Um único arquivo .html, com CSS em <style> e JS em <script>.
+Somente HTML, CSS e JavaScript puro. Sem frameworks, sem bibliotecas, sem CDN, sem imagens ou fontes externas. Ilustrar com SVG e CSS inline (formas, padrões, texturas, silhuetas). Emojis só em casos pontuais, nunca como ícone de decoração em todo card.
+Funciona offline ao abrir o arquivo no navegador.
+Escrever no idioma do usuário (por padrão, português do Brasil).
+Passo a passo
+Entender o pedido e perguntar o tamanho (ver seção abaixo). Fazer isso antes de ler ou gerar qualquer coisa, a menos que o usuário já tenha informado.
+Ler a fonte do conteúdo:
+PDF ou arquivo: usar a skill pdf-reading ou file-reading; extrair texto, títulos, dados numéricos, citações e referências. Se for escaneado, usar OCR.
+Texto colado ou apenas um tema: usar o que foi dado e pedir o que faltar de essencial (objetivo, público, pontos obrigatórios).
+Definir a estrutura: se o usuário ou o professor/cliente deu um roteiro obrigatório, seguir esse roteiro item por item. Senão, montar uma narrativa adequada ao tipo de apresentação (ver “Estrutura dos slides”).
+Sintetizar: cada slide com título curto + no máximo 3 a 5 tópicos de até ~15 palavras. Texto é apoio à fala, não o discurso inteiro. Dados, números e citações devem ser fiéis à fonte. Se algo necessário não existir na fonte, não inventar: avisar o usuário e sugerir o que falta.
+Planejar o design antes de codar (ver “Direção de arte”). Escrever o plano em poucas linhas e revisá-lo contra a lista de “tells de IA”.
+Gerar o HTML seguindo as especificações técnicas.
+Conferir e criticar: contagem de slides igual à combinada, navegação funcionando, nenhum texto cortado, nenhum recurso externo, fontes/referências presentes quando existirem, e a checklist visual no fim deste arquivo.
+Perguntar o tamanho do slide (obrigatório)
+
+Antes de gerar, perguntar ao usuário, de forma curta e com opções tocáveis quando houver a ferramenta ask_user_input_v0:
+
+Quantidade de slides
+Curta: 5 a 7 slides (cerca de 5 minutos)
+Média: 8 a 12 slides (cerca de 10 a 15 minutos)
+Longa: 13 a 20 slides (cerca de 20 minutos ou mais)
+Outro: o usuário informa o número exato ou o tempo de fala
+Proporção da tela
+16:9 (padrão para telas e projetores modernos)
+4:3 (projetores antigos e alguns trabalhos escolares)
+1:1 ou vertical 9:16 (redes sociais ou celular)
+
+Regras:
+
+Se o usuário já informou número de slides, tempo de fala ou proporção, não perguntar de novo; usar o que foi dito.
+Se ele não responder ou pedir “tanto faz”, usar 8 a 12 slides em 16:9 e avisar isso na entrega.
+Um número exato pedido pelo usuário sempre vence qualquer faixa deste arquivo.
+Se o conteúdo da fonte for pequeno demais ou grande demais para o tamanho escolhido, avisar e propor um ajuste em vez de encher ou cortar sem aviso.
+A proporção escolhida vira uma variável CSS (--ratio) e o layout, a tipografia e a impressão se adaptam a ela.
+Estrutura dos slides
+
+Adaptar ao tipo de apresentação e ao tamanho escolhido. Todo deck precisa de abertura clara, desenvolvimento com um fio condutor e fechamento. Pontos de partida:
+
+Trabalho escolar ou acadêmico: capa com identificação (título, tema, integrantes, turma, professor, data), introdução e contexto do tema, desenvolvimento (conceitos, causas, consequências, análise), dados ou exemplos reais, proposta ou aplicação, conclusão, referências (ABNT, vindas da fonte).
+Pitch ou proposta: problema, solução, como funciona, mercado ou público, diferencial, números, próximos passos, contato.
+Aula ou palestra: tema e objetivo, conceito central, exemplos, aplicação, resumo, para ir além.
+Relatório ou resultados: contexto, método, principais achados, análise, recomendações, próximos passos.
+
+Se o tamanho for pequeno, agrupar itens. Se for grande, dividir os pontos mais densos (dados, exemplos) em mais de um slide. Nunca pular itens obrigatórios do roteiro do usuário. Incluir referências ou fontes quando a fonte as tiver.
+
+Direção de arte
+1. Parta do tema, do público e do contexto
+
+Antes de qualquer CSS, responda: qual é o assunto, quem vai assistir e em que situação (sala de aula, reunião, evento, tela de celular)? Quais materiais, cores, épocas, cenários ou vocabulário visual pertencem a esse assunto? A identidade do deck nasce daí. Dois temas diferentes devem gerar decks visivelmente diferentes. Se o tema tiver uma obra ou marca de referência (um filme, um livro, uma empresa, um movimento), use o universo dela como inspiração, sem copiar logotipos nem personagens protegidos. Se o assunto estiver vago, proponha uma direção e avise.
+
+Escreva um plano curto (comentário no topo do CSS):
+
+Paleta: 4 a 6 cores nomeadas com hex, tiradas do universo do tema. Definir fundo, texto, uma cor de destaque e uma de apoio.
+Tipografia: qual pilha de fontes do sistema para títulos e qual para o texto (ver abaixo).
+Layout: uma ideia central em uma frase (ex.: “páginas de caderno de campo”, “painéis de um laboratório”, “cartaz de evento”, “relatório de bordo”).
+Elemento memorável: UMA coisa que o público vai lembrar (uma textura, um recorte, uma tipografia gigante, uma moldura, um gráfico bem desenhado). O resto fica quieto e disciplinado.
+2. Tipografia (sem fontes externas)
+
+Use pilhas de fontes do sistema escolhidas com intenção, sempre com fallback:
+
+Serifada editorial: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif
+Humanista limpa: "Avenir Next", "Segoe UI", Optima, Candara, system-ui, sans-serif
+Condensada/impacto para títulos: "Franklin Gothic Medium", "Arial Narrow", "Helvetica Neue Condensed", Impact, sans-serif
+Máquina de escrever/documento: "American Typewriter", "Courier New", monospace (só se combinar com o tema)
+
+Regras:
+
+Use 1 ou 2 famílias. Se forem 2, que sejam claramente distintas.
+Escala tipográfica definida com clamp(): título muito grande, corpo confortável de ler a distância, grande salto entre os níveis.
+Linhas de até ~60 caracteres no corpo. Serifa ganha um pouco mais de entrelinha.
+O título pode ser um elemento visual (enorme, cortado pela margem, sobreposto a uma forma), não só um rótulo.
+Texto alinhado à esquerda, no geral. Centralizar só capa, citação e números em destaque.
+3. Cor e superfície
+Fundo com personalidade: cor sólida escolhida, textura sutil feita com CSS/SVG (ruído via feTurbulence, grão, papel, listras, retícula de pontos), nunca degradê aleatório.
+Contraste alto entre texto e fundo (mínimo 4.5:1). Um único destaque forte, o resto neutro.
+Preto puro e branco puro raramente: use tons com a temperatura da paleta.
+O tom combina com o contexto: sério e sóbrio para trabalho acadêmico formal, mais ousado para pitch criativo ou tema jovem.
+4. Layouts variados com um sistema
+
+Mesma grade e mesma tipografia, mas composições diferentes entre slides. Alterne:
+
+capa com título gigante e uma ilustração SVG ou forma grande sangrando para fora do slide;
+lista em duas colunas assimétricas (texto estreito + bloco largo);
+número gigante isolado com uma frase curta (para um dado que realmente importa);
+citação grande, sem aspas decorativas genéricas;
+linha do tempo ou fluxo (só quando o conteúdo é de fato uma sequência);
+tela dividida: comparação, antes e depois, problema e solução;
+barras e gráficos desenhados em CSS/SVG com rótulos diretos, sem legenda separada.
+5. Ilustração sem imagens externas
+
+Crie composições com SVG inline: silhuetas simples, formas geométricas ligadas ao tema, padrões repetidos, molduras, linhas. Poucas formas bem desenhadas valem mais que muitos ícones. Evite ícones-emoji em círculos coloridos.
+
+6. Animação
+
+A apresentação deve ter vida, mas cada movimento precisa ter motivo: guiar o olhar, mostrar uma mudança ou reforçar o clima do tema. Animação feita em todo bloco do mesmo jeito é o que denuncia template.
+
+Transição entre slides (escolher UMA família para o deck inteiro, de acordo com o tema)
+
+Deslize horizontal com leve parallax (fundo se move mais devagar que o conteúdo): serve para a maioria dos temas.
+Fade com leve escala (zoom suave): temas contemplativos, culturais, históricos.
+Corte rápido com cortina (uma forma da paleta varre a tela): temas enérgicos, esportes, tecnologia, jovem.
+Virada de página (rotação 3D curta com perspective): temas de livro, diário, documento.
+A direção respeita a navegação: avançar entra pela direita, voltar entra pela esquerda.
+
+Entrada do conteúdo de cada slide (orquestrada, não uniforme)
+
+Ao entrar em um slide, os elementos aparecem em sequência curta (atraso de 60 a 120 ms entre eles, duração de 400 a 700 ms), na ordem de leitura: título, ponto focal, apoio.
+Variar o tipo de entrada conforme o papel do elemento: título que se revela por máscara (clip-path) ou linha a linha, lista que entra item por item, número que sobe, forma de fundo que desliza. Não usar o mesmo fade-up em tudo.
+Reiniciar as animações a cada visita ao slide (usar uma classe .is-active no slide atual e remover ao sair).
+O conteúdo nunca fica invisível se o JS falhar: o estado final é o padrão e a animação parte de uma classe aplicada pelo script.
+
+Animações de dados e ilustração (onde a animação mais ajuda)
+
+Números em destaque contam de 0 até o valor (700 a 1200 ms, easeOutCubic), formatados em pt-BR.
+Barras e gráficos crescem a partir da base ou do zero, em sequência.
+Linhas, contornos e fluxos em SVG se desenham com stroke-dasharray / stroke-dashoffset.
+Linha do tempo ou etapas se acendem uma a uma.
+Formas e padrões de fundo têm um movimento lento e contínuo (deriva, rotação, respiração de 8 a 20 s), sutil, só em um ou dois elementos por slide e nunca sob texto que atrapalhe a leitura.
+Um interruptor opcional (tecla A) pausa as animações contínuas.
+
+Interação (resposta a uma ação do usuário é sempre bem-vinda)
+
+Botões e controles com resposta clara ao toque, foco e passagem do mouse.
+Barra de progresso que preenche suavemente; contador que troca o número com uma pequena rolagem vertical.
+Visão geral em grade (G) que abre com transição de escala.
+
+Regras técnicas
+
+Animar só transform e opacity (e clip-path quando necessário). Nada de animar width, height, top ou left.
+Usar cubic-bezier com desaceleração no final (ex.: cubic-bezier(.22,1,.36,1)); evitar linear e o ease padrão em tudo. Definir as durações e curvas como variáveis CSS em :root (--dur, --ease).
+Usar will-change apenas nos elementos que animam durante a transição, e removê-lo depois.
+Para contadores e sequências, requestAnimationFrame ou Web Animations API; sem bibliotecas.
+prefers-reduced-motion: reduce: desligar parallax, movimentos contínuos, contadores e deslizes; manter só trocas instantâneas ou fades muito curtos, e mostrar o valor final dos números.
+Impressão e PDF (@media print): desativar todas as animações e mostrar o estado final de todos os elementos.
+Respeitar o limite: movimento é um acento do tema, não o assunto. Se o texto não puder ser lido com calma por causa do movimento, reduzir.
+7. Estrutura visual significa algo
+
+Bordas, numeração, divisores e rótulos só entram se carregarem informação. Numerar 01 / 02 / 03 apenas para sequências reais (passos, linha do tempo). Nada de rótulo decorativo acima de todo título.
+
+Tells de IA: evitar
+
+Se o resultado cair em qualquer item abaixo sem que o tema justifique, refaça essa parte:
+
+fundo creme com serifa de contraste alto e destaque terracota;
+fundo quase preto com um único destaque verde-ácido ou vermelho-vivo;
+tudo em cards arredondados idênticos, mesma sombra cinza suave, degradês de enfeite;
+rótulo minúsculo em CAIXA ALTA espaçada acima de cada título;
+uma palavra do título em itálico ou outra cor para “dar ênfase”;
+textos tipo “A · B · C” com pontos do meio, “PALAVRA — fragmento”, setas “→” em tudo;
+fonte monoespaçada em rótulos pequenos só por estilo;
+ícones-emoji decorando cada tópico;
+o mesmo fade-up com a mesma duração em todos os blocos de todos os slides;
+hover que levanta e projeta sombra em todo card;
+animação de entrada que atrasa a leitura ou deixa o conteúdo invisível por mais de um segundo;
+slides com texto demais, cheio de bullets do mesmo tamanho, sem hierarquia.
+Especificações técnicas
+Navegação: setas ← →, espaço, PageUp/PageDown, Home/End; botões Anterior/Próximo; clique/toque; swipe no celular.
+Indicadores: contador “3 / 10” e barra de progresso. Discretos e integrados ao estilo do deck, não uma barra de app genérica.
+Tela cheia: tecla F e botão. Tecla G ou Esc opcional para visão geral em grade. Tecla A opcional para pausar as animações contínuas.
+Animação: seguir a seção “Animação”: transição entre slides com direção, entradas orquestradas por slide (classe .is-active), contadores, gráficos e SVG animados, tudo com CSS e JS puro, prefers-reduced-motion respeitado e animações desligadas na impressão.
+Hash na URL (#3) para abrir direto em um slide.
+Proporção: slide na proporção escolhida pelo usuário (aspect-ratio: var(--ratio)), centralizado e escalado para caber na janela; tipografia com clamp(); legível em celular.
+Impressão: @media print com um slide por página, no mesmo formato escolhido, preservando cores de fundo (print-color-adjust: exact).
+Acessibilidade: lang conforme o idioma, contraste alto, aria-live no contador, foco visível nos botões.
+Design: variáveis CSS em :root com a paleta definida no plano; um mesmo sistema (grade, escala tipográfica, espaçamentos) com composições variadas.
+Tema claro/escuro via prefers-color-scheme apenas se não prejudicar a identidade visual (opcional).
+Cuidado com a especificidade do CSS: classes de layout não devem anular umas às outras (ex.: espaçamentos entre blocos).
+Esqueleto mínimo
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Título da apresentação</title>
+<style>/* plano de design em comentário, :root { --ratio: 16/9; ... }, layout .slide, transições, print */</style>
+</head>
+<body>
+<main id="deck">
+  <section class="slide" data-title="Capa">...</section>
+  <!-- demais slides -->
+</main>
+<nav><button id="prev">←</button><span id="count"></span><button id="next">→</button></nav>
+<div id="bar"></div>
+<script>/* navegação, teclado, swipe, hash, fullscreen */</script>
+</body>
+</html>
+ 
+Checklist visual antes de entregar
+ Dá para perceber o assunto só pelas cores, pela tipografia e pelas formas?
+ Existe um elemento memorável e o resto é discreto?
+ Os slides têm composições diferentes entre si, mas parecem da mesma família?
+ Cada slide tem hierarquia clara: um ponto focal, depois apoio?
+ Nenhum item da lista “Tells de IA” aparece sem justificativa?
+ Remova um enfeite (regra da Chanel): o que sobrou ainda funciona sem ele? Então ele era desnecessário.
+ Texto legível a 3 metros de distância (título enorme, corpo sem miudezas).
+ A animação segue uma única família de transição, tem motivo em cada movimento e não repete o mesmo efeito em tudo?
+ Números, barras e SVG animam ao entrar no slide e reiniciam ao voltar?
+ Com `prefers-reduced-motion` e na impressão, tudo aparece no estado final e legível?prefers-reduced-motion e na impressão, tudo aparece no estado final e legível?
+ Quantidade de slides e proporção iguais ao combinado.
+ Nada cortado em tela de celular e na proporção escolhida; impressão com um slide por página.
+Entrega
+Salvar em /mnt/user-data/outputs/apresentacao.html e entregar com present_files.
+Resposta curta: quantos slides foram gerados e em qual proporção, a direção visual escolhida em uma frase (paleta e ideia central), o estilo de animação usado, atalhos principais e o que faltou na fonte (se faltou).
+Não adicionar conteúdo que não esteja na fonte ou no pedido, exceto textos de transição e a estrutura necessária.
